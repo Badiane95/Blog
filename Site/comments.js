@@ -115,3 +115,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 15000);
 });
+document.getElementById("comment-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value || "Utilisateur";
+    const comment = document.getElementById("comment").value;
+
+    if (comment.trim() === "") {
+        alert("Veuillez écrire un commentaire.");
+        return;
+    }
+
+    // Ajoute le commentaire au conteneur
+    const commentsList = document.getElementById("comments-list");
+    const newComment = document.createElement("li");
+    newComment.innerHTML = `<strong>${name} :</strong> ${comment}`;
+    commentsList.appendChild(newComment);
+
+    // Réinitialise le formulaire
+    document.getElementById("comment-form").reset();
+});
